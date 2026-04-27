@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Popup Blocker (Games)",
+  "version": "1.0",
+  "description": "Blocks annoying game popups like ads and hint dialogs.",
+  "permissions": ["activeTab", "*://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.poki.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
