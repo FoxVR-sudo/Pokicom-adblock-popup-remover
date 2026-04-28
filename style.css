@@ -5,7 +5,9 @@ dialog,
 .adsbox,
 iframe[src*="doubleclick.net"],
 iframe[src*="googlesyndication.com"],
-iframe[src*="adservice"] {
+iframe[src*="adservice"],
+iframe[src*="videocdnmetrika"],
+iframe[src*="f.php?sid="] {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;

@@ -2,19 +2,21 @@
 
 Browser extension for Firefox, Chrome, Edge and other Chromium-based browsers.
 
-Current release: `1.1.1`
+Current release: `1.1.2`
 
 What it does:
 
 - blocks Poki in-game overlays such as hint or rewarded-ad dialogs
 - blocks popup/ad windows triggered on Filmizip clicks by neutralizing `window.open`
 - removes common modal, overlay and ad iframe elements on both sites
+- also runs inside the Vidmoly embed used by Filmizip to block click-trap tracker iframes before playback
 - includes packaged release assets with extension icons
 
 Supported sites:
 
 - `poki.com`
 - `filmizip.com`
+- `vidmoly.biz` embeds loaded by Filmizip
 
 Files included in the release:
 
@@ -41,7 +43,7 @@ Install in Chrome or Edge:
 
 Package output:
 
-- `dist/popup-blocker-poki-filmizip-v1.1.1.zip`
+- `dist/popup-blocker-poki-filmizip-v1.1.2.zip`
 
 Publishing notes:
 

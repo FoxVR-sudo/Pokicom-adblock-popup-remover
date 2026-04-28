@@ -42,6 +42,22 @@ const siteRules = [
             "[class*=' ads']",
             "[class*='popunder']"
         ]
+    },
+    {
+        host: "vidmoly.biz",
+        texts: [
+            "advertisement",
+            "skip ad countdown",
+            "this must be hidden"
+        ],
+        selectors: [
+            "iframe[src*='videocdnmetrika']",
+            "iframe[src*='f.php?sid=']",
+            "#mg_vd",
+            "#vj_vs",
+            ".video_ad",
+            ".adblock-overlay"
+        ]
     }
 ];
 
@@ -162,10 +178,47 @@ function removeBlockingLayers() {
     });
 }
 
+function removeVidmolyTraps() {
+    if (!(hostname === "vidmoly.biz" || hostname.endsWith(".vidmoly.biz"))) {
+        return;
+    }
+
+    document.querySelectorAll("iframe").forEach((node) => {
+        if (!(node instanceof HTMLIFrameElement)) {
+            return;
+        }
+
+        const src = node.getAttribute("src") || "";
+        const rect = node.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(node);
+        const isMainPlayer = src.includes("embed-") || node.closest("#vplayer");
+        const isTrackerFrame = src.includes("videocdnmetrika") || src.includes("f.php?sid=");
+        const isTinyFixedFrame = computedStyle.position === "fixed" && rect.width <= 4 && rect.height <= 4;
+
+        if (isMainPlayer) {
+            return;
+        }
+
+        if (isTrackerFrame || isTinyFixedFrame) {
+            node.style.pointerEvents = "none";
+            removeNode(node);
+        }
+    });
+
+    ["#mg_vd", "#vj_vs", ".video_ad", ".adblock-overlay"].forEach((selector) => {
+        document.querySelectorAll(selector).forEach((node) => {
+            if (!isProtectedContent(node)) {
+                removeNode(node);
+            }
+        });
+    });
+}
+
 function runCleanup() {
     removeBySelectors();
     removeByText();
     removeBlockingLayers();
+    removeVidmolyTraps();
     unlockScroll();
 }
 

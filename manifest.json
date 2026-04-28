@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Popup Blocker (Poki + Filmizip)",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Blocks intrusive in-page overlays on Poki and popup/ad windows on Filmizip.",
   "author": "FoxVR-sudo",
   "homepage_url": "https://github.com/FoxVR-sudo/Pokicom-adblock-popup-remover",
@@ -16,7 +16,9 @@
       "matches": [
         "*://*.poki.com/*",
         "*://filmizip.com/*",
-        "*://*.filmizip.com/*"
+        "*://*.filmizip.com/*",
+        "*://vidmoly.biz/*",
+        "*://*.vidmoly.biz/*"
       ],
       "js": ["content.js"],
       "css": ["style.css"],
@@ -30,7 +32,9 @@
       "matches": [
         "*://*.poki.com/*",
         "*://filmizip.com/*",
-        "*://*.filmizip.com/*"
+        "*://*.filmizip.com/*",
+        "*://vidmoly.biz/*",
+        "*://*.vidmoly.biz/*"
       ]
     }
   ],
