@@ -1,4 +1,15 @@
-div[style*="position: fixed"],
-div[style*="z-index: 9999"] {
+dialog,
+[role="dialog"],
+[aria-modal="true"],
+.modal-backdrop,
+.popup,
+.pop-up,
+.overlay,
+.adsbox,
+iframe[src*="doubleclick.net"],
+iframe[src*="googlesyndication.com"],
+iframe[src*="adservice"] {
     display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }

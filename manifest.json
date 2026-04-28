@@ -1,15 +1,29 @@
 {
-  "manifest_version": 2,
-  "name": "Popup Blocker (Games)",
-  "version": "1.0",
-  "description": "Blocks annoying game popups like ads and hint dialogs.",
-  "permissions": ["activeTab", "*://*/*"],
+  "manifest_version": 3,
+  "name": "Popup Blocker (Poki + Filmizip)",
+  "version": "1.1.0",
+  "description": "Blocks intrusive in-page overlays on Poki and popup/ad windows on Filmizip.",
   "content_scripts": [
     {
-      "matches": ["*://*.poki.com/*"],
+      "matches": [
+        "*://*.poki.com/*",
+        "*://filmizip.com/*",
+        "*://*.filmizip.com/*"
+      ],
       "js": ["content.js"],
       "css": ["style.css"],
-      "run_at": "document_idle"
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["page-script.js"],
+      "matches": [
+        "*://*.poki.com/*",
+        "*://filmizip.com/*",
+        "*://*.filmizip.com/*"
+      ]
     }
   ]
 }
