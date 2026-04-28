@@ -3,6 +3,14 @@
   "name": "Popup Blocker (Poki + Filmizip)",
   "version": "1.1.0",
   "description": "Blocks intrusive in-page overlays on Poki and popup/ad windows on Filmizip.",
+  "author": "FoxVR-sudo",
+  "homepage_url": "https://github.com/FoxVR-sudo/Pokicom-adblock-popup-remover",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
   "content_scripts": [
     {
       "matches": [
@@ -25,5 +33,12 @@
         "*://*.filmizip.com/*"
       ]
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "popup-blocker-poki-filmizip@foxvr-sudo",
+      "strict_min_version": "121.0"
+    }
+  },
+  "minimum_chrome_version": "114"
 }
