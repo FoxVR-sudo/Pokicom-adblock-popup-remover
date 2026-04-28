@@ -30,16 +30,16 @@
     }
 
     function shouldBlockClick(element) {
-        if (!(element instanceof HTMLElement)) {
+        if (!(element instanceof Element)) {
             return false;
         }
 
-        const clickable = element.closest("a, button");
-        if (!(clickable instanceof HTMLElement)) {
+        const clickable = element.closest("a");
+        if (!(clickable instanceof HTMLAnchorElement)) {
             return false;
         }
 
-        const href = clickable instanceof HTMLAnchorElement ? clickable.getAttribute("href") || "" : "";
+        const href = clickable.getAttribute("href") || "";
         const inlineHandler = [
             clickable.getAttribute("onclick") || "",
             clickable.getAttribute("onmouseup") || "",
@@ -47,7 +47,7 @@
         ].join(" ");
 
         const opensPopup = /window\.open|popup|popunder|popunder/i.test(inlineHandler);
-        const suspiciousHref = href === "" || href === "#" || href.startsWith("javascript:") || /doubleclick|googlesyndication|adservice|popup|popunder|ads?\./i.test(href);
+        const suspiciousHref = /doubleclick|googlesyndication|adservice|popup|popunder|ads?\./i.test(href);
         const blankTarget = clickable.getAttribute("target") === "_blank" && suspiciousHref;
 
         return opensPopup || blankTarget;

@@ -8,10 +8,15 @@ const siteRules = [
             "not enough hints",
             "get more hints",
             "rewarded ad",
-            "continue with ads"
+            "continue with ads",
+            "watch ad to continue",
+            "watch ad for hints",
+            "claim reward"
         ],
         selectors: [
             "[data-testid*='modal']",
+            "[data-testid*='dialog']",
+            "[data-testid*='overlay']",
             "[class*='modal']",
             "[class*='popup']",
             "[class*='overlay']"
@@ -30,9 +35,11 @@ const siteRules = [
         selectors: [
             ".adsbox",
             ".adsbygoogle",
+            "[id^='div-gpt-ad']",
+            "[class*='ad-slot']",
             "[id*='ads']",
-            "[class*='ads']",
-            "[class*='banner']",
+            "[class^='ads']",
+            "[class*=' ads']",
             "[class*='popunder']"
         ]
     }
@@ -44,9 +51,6 @@ const genericSelectors = [
     "[aria-modal='true']",
     ".modal",
     ".modal-backdrop",
-    ".popup",
-    ".pop-up",
-    ".overlay",
     "iframe[src*='doubleclick.net']",
     "iframe[src*='googlesyndication.com']",
     "iframe[src*='adservice']"
@@ -84,8 +88,12 @@ function removeNode(node) {
     node.remove();
 }
 
+function isProtectedContent(node) {
+    return node.matches("html, body, main, article, section, video, canvas") || node.querySelector("video, canvas, iframe[allowfullscreen]");
+}
+
 function unlockScroll() {
-    if (!document.querySelector("dialog, [role='dialog'], [aria-modal='true'], .modal, .popup, .overlay")) {
+    if (!document.querySelector("dialog, [role='dialog'], [aria-modal='true'], .modal, .modal-backdrop")) {
         document.documentElement.style.removeProperty("overflow");
         document.body?.style.removeProperty("overflow");
     }
@@ -112,11 +120,18 @@ function removeByText() {
         }
 
         const blockingParent = node.closest("dialog, [role='dialog'], [aria-modal='true'], .modal, .popup, .pop-up, .overlay");
-        removeNode(blockingParent || node);
+        const removalTarget = blockingParent || node;
+        if (!isProtectedContent(removalTarget)) {
+            removeNode(removalTarget);
+        }
     });
 }
 
 function removeBlockingLayers() {
+    if (!hostname.endsWith("poki.com")) {
+        return;
+    }
+
     const elements = document.body?.querySelectorAll("body *") || [];
 
     elements.forEach((node) => {
@@ -134,10 +149,14 @@ function removeBlockingLayers() {
         const classOrId = `${node.id} ${node.className}`.toLowerCase();
         const text = normalizeText(node.textContent || "");
         const looksLikeOverlay = rect.width >= window.innerWidth * 0.3 && rect.height >= window.innerHeight * 0.15;
-        const suspiciousName = /ad|ads|popup|popunder|overlay|modal|banner/.test(classOrId);
+        const suspiciousName = /popup|overlay|modal|reward|hint/.test(classOrId);
         const suspiciousText = blockedTexts.some((pattern) => text.includes(pattern));
 
-        if (looksLikeOverlay && (zIndex >= 999 || suspiciousName || suspiciousText)) {
+        if (isProtectedContent(node)) {
+            return;
+        }
+
+        if (looksLikeOverlay && (zIndex >= 2000 || suspiciousName || suspiciousText)) {
             removeNode(node);
         }
     });

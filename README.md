@@ -2,7 +2,7 @@
 
 Browser extension for Firefox, Chrome, Edge and other Chromium-based browsers.
 
-Current release: `1.1.0`
+Current release: `1.1.1`
 
 What it does:
 
@@ -41,7 +41,7 @@ Install in Chrome or Edge:
 
 Package output:
 
-- `dist/popup-blocker-poki-filmizip-v1.1.0.zip`
+- `dist/popup-blocker-poki-filmizip-v1.1.1.zip`
 
 Publishing notes:
 
