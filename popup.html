@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Popup Blocker</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      min-width: 220px;
+      padding: 16px;
+      margin: 0;
+      background: #1a1a2e;
+      color: #e0e0e0;
+    }
+    h2 {
+      font-size: 14px;
+      margin: 0 0 12px;
+      color: #a78bfa;
+    }
+    button {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 13px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #7c3aed;
+      color: #fff;
+      transition: background 0.15s;
+    }
+    button:hover {
+      background: #6d28d9;
+    }
+    button:disabled {
+      background: #4b5563;
+      cursor: default;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+      min-height: 18px;
+      color: #86efac;
+    }
+    #status.error {
+      color: #f87171;
+    }
+  </style>
+</head>
+<body>
+  <h2>Popup Blocker</h2>
+  <button id="clearCacheBtn">Clear poki.com cache</button>
+  <button id="clearCookiesBtn" style="margin-top:8px">Clear poki.com cookies</button>
+  <button id="clearAllBtn" style="margin-top:8px;background:#b45309">Clear both (cache + cookies)</button>
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
