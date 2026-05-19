@@ -1,4 +1,4 @@
-# Pokicom-adblock-popup-remover
+# filmizip-adblock-popup-remover
 
 Browser extension for Firefox, Chrome, Edge and other Chromium-based browsers.
 
@@ -6,7 +6,6 @@ Current release: `1.1.2`
 
 What it does:
 
-- blocks Poki in-game overlays such as hint or rewarded-ad dialogs
 - blocks popup/ad windows triggered on Filmizip clicks by neutralizing `window.open`
 - removes common modal, overlay and ad iframe elements on both sites
 - also runs inside the Vidmoly embed used by Filmizip to block click-trap tracker iframes before playback
@@ -14,7 +13,6 @@ What it does:
 
 Supported sites:
 
-- `poki.com`
 - `filmizip.com`
 - `vidmoly.biz` embeds loaded by Filmizip
 
