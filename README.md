@@ -141,7 +141,7 @@ version it has already seen.
 ## Install (users)
 
 Grab the signed `.xpi` from the
-[Releases page](https://github.com/FoxVR-sudo/Pokicom-adblock-popup-remover/releases)
+[Releases page](https://github.com/FoxVR-sudo/filmizip-adblock-popup-remover/releases)
 and open it in Firefox - drag it onto a Firefox window, or `Ctrl+O`, or
 ☰ → Add-ons and themes → gear icon → *Install Add-on From File…*
 

@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "description": "Blocks popunder windows, click traps and intrusive ad overlays on filmizip.com and the vidmoly video embeds it loads.",
   "author": "FoxVR-sudo",
-  "homepage_url": "https://github.com/FoxVR-sudo/Pokicom-adblock-popup-remover",
+  "homepage_url": "https://github.com/FoxVR-sudo/filmizip-adblock-popup-remover",
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",

@@ -5,7 +5,7 @@
   "private": true,
   "license": "MIT",
   "author": "FoxVR-sudo",
-  "homepage": "https://github.com/FoxVR-sudo/Pokicom-adblock-popup-remover",
+  "homepage": "https://github.com/FoxVR-sudo/filmizip-adblock-popup-remover",
   "scripts": {
     "lint": "web-ext lint",
     "start": "web-ext run",
