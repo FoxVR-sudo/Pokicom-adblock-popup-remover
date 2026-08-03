@@ -1,13 +1,13 @@
 # Popup & Overlay Blocker
 
-## [⬇ Download for Firefox](https://github.com/FoxVR-sudo/filmizip-adblock-popup-remover/releases/latest/download/popup-overlay-blocker.xpi)
+## [⬇ Download for Firefox](https://raw.githubusercontent.com/FoxVR-sudo/filmizip-adblock-popup-remover/main/popup-overlay-blocker.xpi)
 
 Open the downloaded file in Firefox to install it - drag it onto a Firefox
 window, or press `Ctrl+O` and pick it. It is signed by Mozilla, so it installs
 in ordinary Firefox and updates itself from then on.
 
-That link always serves the newest release, so it stays valid across versions
-and is safe to share.
+The file is `popup-overlay-blocker.xpi` in this repository, so the link above
+always points at the current build and is safe to share.
 
 Browser extension for Firefox, Chrome, Edge and other Chromium-based browsers.
 
@@ -154,11 +154,15 @@ Releasing a new version, in order:
 
 1. Bump `version` in `manifest.json` and `package.json`
 2. `npm run lint && npm run sign`
-3. Commit and push the regenerated `updates.json` to `main`
-4. Publish a GitHub release tagged `v<version>` with `dist/popup-overlay-blocker-<version>.xpi` attached
+3. Commit `popup-overlay-blocker.xpi` and `updates.json` together, push to `main`
 
-The tag and the asset filename have to match what `updates.json` says, or
-Firefox will poll a URL that 404s and silently stay on the old version.
+That is the whole release. Both files are written by `npm run sign`, and
+committing them in one go is what keeps them consistent: `updates.json`
+announces a version, and the `.xpi` sitting next to it *is* that version.
+
+Publishing a GitHub release as well is optional and changes nothing - the
+download link and the update check both read from the default branch, not from
+a tag.
 
 `npm run lint` passes `--self-hosted`, because `update_url` is only allowed for
 self-hosted add-ons. `npm run lint:listed` is the stricter check to use if this
@@ -167,10 +171,9 @@ removed, since AMO then serves updates itself.
 
 ## Install (users)
 
-Grab the signed `.xpi` from the
-[Releases page](https://github.com/FoxVR-sudo/filmizip-adblock-popup-remover/releases)
-and open it in Firefox - drag it onto a Firefox window, or `Ctrl+O`, or
-☰ → Add-ons and themes → gear icon → *Install Add-on From File…*
+Use the [download link at the top](#-download-for-firefox), then open the file in
+Firefox - drag it onto a Firefox window, or `Ctrl+O`, or ☰ → Add-ons and themes
+→ gear icon → *Install Add-on From File…*
 
 It is signed by Mozilla, so ordinary Firefox installs it without any config
 changes, and it survives a restart.
@@ -180,8 +183,8 @@ After installing, click the toolbar icon while a film is open and press
 rotating domains, so each new one is granted once, by you, and remembered.
 
 Updates are automatic. `browser_specific_settings.gecko.update_url` points at
-`updates.json` on the default branch, Firefox polls it, and installs whatever
-release it names.
+`updates.json` on the default branch, Firefox polls it, and installs the build
+committed next to it.
 
 ## Install for testing
 

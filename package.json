@@ -25,6 +25,8 @@
       "dist",
       "build",
       "scripts",
+      "*.xpi",
+      "updates.json",
       "node_modules",
       "package.json",
       "package-lock.json",

@@ -25,7 +25,9 @@ const updates = {
             updates: [
                 {
                     version,
-                    update_link: `https://github.com/${REPO}/releases/download/v${version}/${ASSET}-${version}.xpi`,
+                    // Served straight from the default branch, so the manifest
+                    // and the build it describes are always the same commit.
+                    update_link: `https://raw.githubusercontent.com/${REPO}/main/${ASSET}.xpi`,
                     applications: { gecko: { strict_min_version: minVersion } }
                 }
             ]
@@ -36,4 +38,4 @@ const updates = {
 writeFileSync(join(root, "updates.json"), `${JSON.stringify(updates, null, 2)}\n`);
 
 console.log(`updates.json now points at v${version}`);
-console.log("Commit and push it to main, then publish the release with that exact asset name.");
+console.log(`Commit it together with ${ASSET}.xpi and push to main.`);
