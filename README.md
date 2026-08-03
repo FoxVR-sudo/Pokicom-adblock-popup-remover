@@ -136,7 +136,25 @@ it, without publishing it in the store or putting it through review. The signed
 `npm run sign:listed` is the same call for a public store listing.
 
 Bump `version` in `manifest.json` before every signing run - AMO refuses a
-version it has already seen.
+version it has already seen. `npm run sign` regenerates `updates.json` from
+that version first, and renames the signed file from AMO's internal upload id
+to `popup-overlay-blocker-<version>.xpi`, which is the name the update manifest
+points at.
+
+Releasing a new version, in order:
+
+1. Bump `version` in `manifest.json` and `package.json`
+2. `npm run lint && npm run sign`
+3. Commit and push the regenerated `updates.json` to `main`
+4. Publish a GitHub release tagged `v<version>` with `dist/popup-overlay-blocker-<version>.xpi` attached
+
+The tag and the asset filename have to match what `updates.json` says, or
+Firefox will poll a URL that 404s and silently stay on the old version.
+
+`npm run lint` passes `--self-hosted`, because `update_url` is only allowed for
+self-hosted add-ons. `npm run lint:listed` is the stricter check to use if this
+is ever submitted for a public AMO listing - that route needs `update_url`
+removed, since AMO then serves updates itself.
 
 ## Install (users)
 
@@ -152,8 +170,9 @@ After installing, click the toolbar icon while a film is open and press
 **Enable** next to the player's domain. Filmizip serves its players from
 rotating domains, so each new one is granted once, by you, and remembered.
 
-Releases are not auto-updating: a new version is installed by opening the newer
-`.xpi` over the old one, no uninstall needed.
+Updates are automatic. `browser_specific_settings.gecko.update_url` points at
+`updates.json` on the default branch, Firefox polls it, and installs whatever
+release it names.
 
 ## Install for testing
 

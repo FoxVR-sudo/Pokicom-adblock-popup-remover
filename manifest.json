@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Popup & Overlay Blocker",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Blocks popunder windows, click traps and intrusive ad overlays on filmizip.com and the vidmoly video embeds it loads.",
   "author": "FoxVR-sudo",
   "homepage_url": "https://github.com/FoxVR-sudo/filmizip-adblock-popup-remover",
@@ -56,6 +56,7 @@
     "gecko": {
       "id": "popup-overlay-blocker@foxvr-sudo",
       "strict_min_version": "128.0",
+      "update_url": "https://raw.githubusercontent.com/FoxVR-sudo/filmizip-adblock-popup-remover/main/updates.json",
       "data_collection_permissions": {
         "required": ["none"]
       }

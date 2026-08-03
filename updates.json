@@ -1,0 +1,17 @@
+{
+  "addons": {
+    "popup-overlay-blocker@foxvr-sudo": {
+      "updates": [
+        {
+          "version": "2.1.0",
+          "update_link": "https://github.com/FoxVR-sudo/filmizip-adblock-popup-remover/releases/download/v2.1.0/popup-overlay-blocker-2.1.0.xpi",
+          "applications": {
+            "gecko": {
+              "strict_min_version": "128.0"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
