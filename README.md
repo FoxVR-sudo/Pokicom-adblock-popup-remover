@@ -2,7 +2,7 @@
 
 Browser extension for Firefox, Chrome, Edge and other Chromium-based browsers.
 
-Current release: `2.0.0`
+Current release: `2.1.0`
 
 ## What it does
 
