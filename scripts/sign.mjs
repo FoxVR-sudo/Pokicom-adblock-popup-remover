@@ -8,7 +8,7 @@
  */
 
 import { spawn } from "node:child_process";
-import { existsSync, readdirSync, readFileSync, renameSync, statSync } from "node:fs";
+import { copyFileSync, existsSync, readdirSync, readFileSync, renameSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -55,7 +55,26 @@ function renameArtifact(version) {
     }
 
     renameSync(join(dist, candidates[0].name), join(dist, wanted));
+
+    /**
+     * A copy at the repository root, committed alongside the source.
+     *
+     * This is what both the README button and updates.json point at, through
+     * raw.githubusercontent.com. Publishing a GitHub release works too, but it
+     * puts the download behind a tag and an asset name that have to match
+     * updates.json exactly - and when they do not, Firefox polls a URL that
+     * 404s and silently stays on the old version. Committing the file removes
+     * that failure mode: the binary and the manifest that describes it move in
+     * the same commit and cannot drift.
+     *
+     * The cost is a ~32 KB binary in git history per release, which for this
+     * project is not worth optimising away.
+     */
+    copyFileSync(join(dist, wanted), join(root, `${ASSET}.xpi`));
+
     console.log(`\nSigned package: dist/${wanted}`);
+    console.log(`Committable copy: ${ASSET}.xpi`);
+    console.log("Commit it together with updates.json and push to main.");
 }
 
 const manifestVersion = JSON.parse(readFileSync(join(root, "manifest.json"), "utf8")).version;
