@@ -1,0 +1,36 @@
+{
+  "name": "popup-overlay-blocker",
+  "version": "2.0.0",
+  "description": "Blocks popunder windows, click traps and intrusive ad overlays on filmizip.com and the vidmoly video embeds it loads.",
+  "private": true,
+  "license": "MIT",
+  "author": "FoxVR-sudo",
+  "homepage": "https://github.com/FoxVR-sudo/Pokicom-adblock-popup-remover",
+  "scripts": {
+    "lint": "web-ext lint",
+    "start": "web-ext run",
+    "build": "web-ext build --overwrite-dest --artifacts-dir dist",
+    "sign": "node scripts/sign.mjs unlisted",
+    "sign:listed": "node scripts/sign.mjs listed",
+    "build:chrome": "node scripts/build-chrome.mjs && web-ext build --source-dir build/chrome --overwrite-dest --artifacts-dir dist --filename \"{name}-{version}-chrome.zip\""
+  },
+  "devDependencies": {
+    "web-ext": "^8.3.0"
+  },
+  "webExt": {
+    "sourceDir": ".",
+    "ignoreFiles": [
+      "dist",
+      "build",
+      "scripts",
+      "node_modules",
+      "package.json",
+      "package-lock.json",
+      "README.md",
+      "LICENSE",
+      ".gitignore",
+      ".gitattributes",
+      ".web-extension-id"
+    ]
+  }
+}

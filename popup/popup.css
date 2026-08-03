@@ -1,0 +1,117 @@
+:root {
+    color-scheme: light dark;
+}
+
+body {
+    width: 300px;
+    margin: 0;
+    padding: 14px 16px;
+    font: 13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1 {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+h2 {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.6;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.toggle input {
+    margin: 0;
+}
+
+.hint {
+    margin: 8px 0 0;
+    opacity: 0.7;
+}
+
+.note {
+    margin: 2px 0 10px 24px;
+    font-size: 11px;
+    opacity: 0.55;
+}
+
+code {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 11px;
+}
+
+hr {
+    margin: 14px 0;
+    border: 0;
+    border-top: 1px solid currentColor;
+    opacity: 0.15;
+}
+
+.frames {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.frames li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+.frames .host {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 12px;
+}
+
+.frames button {
+    flex: none;
+    padding: 3px 9px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.wide {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.frames .state {
+    flex: none;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.55;
+}
+
+.frames .state.ok {
+    color: #1a7f37;
+    opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+    .frames .state.ok {
+        color: #3fb950;
+    }
+}

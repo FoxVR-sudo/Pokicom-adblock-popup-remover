@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Popup Blocker (Poki + Filmizip)",
-  "version": "1.1.2",
-  "description": "Blocks intrusive in-page overlays on Poki and popup/ad windows on Filmizip.",
+  "name": "Popup & Overlay Blocker",
+  "version": "2.0.0",
+  "description": "Blocks popunder windows, click traps and intrusive ad overlays on filmizip.com and the vidmoly video embeds it loads.",
   "author": "FoxVR-sudo",
   "homepage_url": "https://github.com/FoxVR-sudo/Pokicom-adblock-popup-remover",
   "icons": {
@@ -11,10 +11,24 @@
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
   },
+  "permissions": ["storage", "scripting"],
+  "optional_host_permissions": ["*://*/*"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "action": {
+    "default_title": "Popup & Overlay Blocker",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
   "content_scripts": [
     {
       "matches": [
-        "*://*.poki.com/*",
         "*://filmizip.com/*",
         "*://*.filmizip.com/*",
         "*://vidmoly.biz/*",
@@ -24,25 +38,30 @@
       "css": ["style.css"],
       "run_at": "document_start",
       "all_frames": true
-    }
-  ],
-  "web_accessible_resources": [
+    },
     {
-      "resources": ["page-script.js"],
       "matches": [
-        "*://*.poki.com/*",
         "*://filmizip.com/*",
         "*://*.filmizip.com/*",
         "*://vidmoly.biz/*",
         "*://*.vidmoly.biz/*"
-      ]
+      ],
+      "js": ["page-script.js"],
+      "world": "MAIN",
+      "run_at": "document_start",
+      "all_frames": true
     }
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "popup-blocker-poki-filmizip@foxvr-sudo",
-      "strict_min_version": "109.0"
+      "id": "popup-overlay-blocker@foxvr-sudo",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "128.0"
     }
-  },
-  "minimum_chrome_version": "114"
+  }
 }
