@@ -1,5 +1,14 @@
 # Popup & Overlay Blocker
 
+## [⬇ Download for Firefox](https://github.com/FoxVR-sudo/filmizip-adblock-popup-remover/releases/latest/download/popup-overlay-blocker.xpi)
+
+Open the downloaded file in Firefox to install it - drag it onto a Firefox
+window, or press `Ctrl+O` and pick it. It is signed by Mozilla, so it installs
+in ordinary Firefox and updates itself from then on.
+
+That link always serves the newest release, so it stays valid across versions
+and is safe to share.
+
 Browser extension for Firefox, Chrome, Edge and other Chromium-based browsers.
 
 Current release: `2.1.0`

@@ -8,7 +8,7 @@
  */
 
 import { spawn } from "node:child_process";
-import { existsSync, readdirSync, readFileSync, renameSync, statSync } from "node:fs";
+import { copyFileSync, existsSync, readdirSync, readFileSync, renameSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -55,7 +55,18 @@ function renameArtifact(version) {
     }
 
     renameSync(join(dist, candidates[0].name), join(dist, wanted));
+
+    /**
+     * A second copy without the version in the name. GitHub serves
+     * /releases/latest/download/<asset> from whichever release is newest, so an
+     * unversioned asset gives one download link that never has to be updated -
+     * which is the link a person can actually be handed. The versioned copy
+     * stays because updates.json has to point at an exact build.
+     */
+    copyFileSync(join(dist, wanted), join(dist, `${ASSET}.xpi`));
+
     console.log(`\nSigned package: dist/${wanted}`);
+    console.log(`Stable-name copy: dist/${ASSET}.xpi  (attach both to the release)`);
 }
 
 const manifestVersion = JSON.parse(readFileSync(join(root, "manifest.json"), "utf8")).version;
