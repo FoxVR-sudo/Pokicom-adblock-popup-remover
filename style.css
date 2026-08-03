@@ -1,13 +1,21 @@
-dialog,
-[role="dialog"],
-[aria-modal="true"],
-.modal-backdrop,
-.adsbox,
-iframe[src*="doubleclick.net"],
-iframe[src*="googlesyndication.com"],
-iframe[src*="adservice"],
-iframe[src*="videocdnmetrika"],
-iframe[src*="f.php?sid="] {
+/*
+ * Scoped to :not([data-popup-blocker="off"]) so the toolbar toggle switches
+ * these rules off too. Blocking is the default, so nothing flashes while the
+ * content script reads the stored preference.
+ *
+ * Only unambiguous ad slots are hidden here. Generic dialog selectors
+ * (dialog, [role="dialog"], [aria-modal="true"]) are deliberately absent -
+ * they also match login prompts, cookie notices and player menus.
+ */
+
+html:not([data-popup-blocker="off"]) .adsbox,
+html:not([data-popup-blocker="off"]) .adsbygoogle,
+html:not([data-popup-blocker="off"]) [id^="div-gpt-ad"],
+html:not([data-popup-blocker="off"]) iframe[src*="doubleclick.net"],
+html:not([data-popup-blocker="off"]) iframe[src*="googlesyndication.com"],
+html:not([data-popup-blocker="off"]) iframe[src*="adservice"],
+html:not([data-popup-blocker="off"]) iframe[src*="videocdnmetrika"],
+html:not([data-popup-blocker="off"]) iframe[src*="f.php?sid="] {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;

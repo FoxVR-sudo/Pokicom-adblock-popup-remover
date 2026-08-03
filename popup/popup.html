@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Popup &amp; Overlay Blocker</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <h1>Popup &amp; Overlay Blocker</h1>
+
+    <label class="toggle">
+        <input type="checkbox" id="enabled" checked>
+        <span>Blocking enabled</span>
+    </label>
+
+    <p class="hint" id="hint"></p>
+
+    <hr>
+
+    <h2>Players on this page</h2>
+    <ul class="frames" id="frames"></ul>
+    <button type="button" id="enable-all" class="wide" hidden>Enable all</button>
+    <p class="hint" id="frames-hint"></p>
+
+    <hr>
+
+    <h2 id="granted-heading">Enabled hosts</h2>
+    <ul class="frames" id="granted"></ul>
+    <p class="hint" id="granted-hint"></p>
+
+    <hr>
+
+    <h2>What to block</h2>
+
+    <label class="toggle">
+        <input type="checkbox" id="mod-ads">
+        <span>Ad containers</span>
+    </label>
+    <p class="note">Exact ad selectors only. Safe.</p>
+
+    <label class="toggle">
+        <input type="checkbox" id="mod-open">
+        <span>Popunder windows</span>
+    </label>
+    <p class="note">Guards <code>window.open</code>. Safe.</p>
+
+    <label class="toggle">
+        <input type="checkbox" id="mod-overlays">
+        <span>Full-screen overlays</span>
+    </label>
+    <p class="note">Guesses by size and naming. Can remove real page elements.</p>
+
+    <label class="toggle">
+        <input type="checkbox" id="mod-clicks">
+        <span>Click traps</span>
+    </label>
+    <p class="note">Intercepts clicks and link navigation. Can break buttons.</p>
+
+    <p class="hint">
+        If a page stops working, switch these off one at a time and reload to
+        find which one is responsible.
+    </p>
+
+    <hr>
+
+    <label class="toggle">
+        <input type="checkbox" id="debug">
+        <span>Log to console</span>
+    </label>
+
+    <p class="hint">
+        Prints every blocked item to the page console (F12). Reload the page
+        after switching this on.
+    </p>
+
+    <script src="popup.js"></script>
+</body>
+</html>
